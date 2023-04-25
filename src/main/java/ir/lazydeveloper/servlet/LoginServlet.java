@@ -28,21 +28,22 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("LOGIN --> " + req.getParameter("email"));
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-        if (email == null && email.isEmpty() && password == null && password.isEmpty()) {
-            resp.sendRedirect("/login.jsp");
-            return;
-        }
-        Accessor accessor = new Accessor(email, password);
         try {
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
+            if (email == null && email.isEmpty() && password == null && password.isEmpty()) {
+                resp.sendRedirect("/login.jsp");
+                return;
+            }
+            Accessor accessor = new Accessor(email, password);
+
             if (loginService.oneFactorLogin(accessor)) {
                 HttpSession session = req.getSession(true);
                 session.setAttribute("Accessor", accessor);
                 resp.sendRedirect("/index.jsp");
             } else {
+                req.setAttribute("errorMessage","email or password is invalid");
                 req.getRequestDispatcher("/login.jsp").include(req, resp);
-                resp.getWriter().println("email or password is invalid");
             }
         } catch (SQLException e) {
             e.printStackTrace();

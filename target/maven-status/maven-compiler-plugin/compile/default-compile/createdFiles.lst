@@ -1,13 +1,13 @@
 ir\lazydeveloper\common\ORMConfig.class
 ir\lazydeveloper\common\util\ToolsValidator.class
 ir\lazydeveloper\model\Accessor.class
-ir\lazydeveloper\dao\RegisterDao.class
-ir\lazydeveloper\servlet\LogoutServlet.class
 ir\lazydeveloper\servlet\RegisterServlet.class
 ir\lazydeveloper\common\util\PropertyUtil.class
 ir\lazydeveloper\common\util\ToolsDate.class
 ir\lazydeveloper\common\ConfigListener.class
 ir\lazydeveloper\model\Person.class
 ir\lazydeveloper\enums\Url.class
-ir\lazydeveloper\service\RegisterService.class
 ir\lazydeveloper\model\Music.class
+ir\lazydeveloper\dao\RegisterDao.class
+ir\lazydeveloper\servlet\LogoutServlet.class
+ir\lazydeveloper\service\RegisterService.class

@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
             if (ToolsValidator.isEmailValidate(email) && ToolsValidator.calcPasswordComplexity(password) == 4) {
-                if (!registerService.isEmailExists(password)) {
+                if (!registerService.isEmailExists(email)) {
                     Accessor accessor = new Accessor(email, password);
                     password = BCrypt.hashpw(password, BCrypt.gensalt());
                     accessor.setPassword(password);
@@ -40,12 +40,12 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("Accessor", accessor);
                     resp.sendRedirect("/index.jsp");
                 } else {
-                    resp.getWriter().println("<p style=\"color: red\">Email address is exists</p>");
-                    req.getRequestDispatcher("/register.jsp").include(req, resp);
+                    req.setAttribute("errorMessage","Email address is exists");
+                    req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 }
             } else {
-                resp.getWriter().println("<p style=\"color: red\">Email or password are invalid</p>");
-                req.getRequestDispatcher("/register.jsp").include(req, resp);
+                req.setAttribute("errorMessage","Email or password are invalid");
+                req.getRequestDispatcher("/register.jsp").forward(req, resp);
             }
         } catch (Exception e) {
             e.printStackTrace();

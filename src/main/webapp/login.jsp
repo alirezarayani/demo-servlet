@@ -15,7 +15,25 @@
 </head>
 <body>
 <%@include file="/WEB-INF/template/header.jsp" %>
-<div class="container d-flex align-items-center justify-content-center  ">
+<%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+%>
+<div class="container d-flex align-items-center justify-content-center">
+    <c:if test="${not empty  errorMessage}">
+        <div class="toast-container position-absolute top-0 end-0 p-3" style="z-index: 11" >
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" delay="3000"  data-bs-autohide="true">
+                <div class="toast-header">
+                    <img src="assets/pic/rayani-logo.png"  class="rounded me-2 fas" alt="">
+                    <strong class="me-auto text-danger">Error</strong>
+                    <small class="text-muted">just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <p class="text-danger">${errorMessage}</p>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <form class="" method="post" action="/login">
         <div class="mb-3 col-md-12">
             <label for="emailID" class="form-label">Email address</label>
@@ -24,7 +42,6 @@
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             <div id="emailValidate" class="form-text">Email is incorrect</div>
         </div>
-
         <div class="mb-3 col-md-12">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1">

@@ -1,4 +1,4 @@
-<%@ page import="org.hibernate.Session" %>
+
 <%@ page import="ir.lazydeveloper.model.Accessor" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
@@ -6,7 +6,6 @@
 <head>
     <%@ include file="bootstrap.jsp" %>
 </head>
-<c:set var="sesstion" value="${sessionScope}"/>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">

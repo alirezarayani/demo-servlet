@@ -14,11 +14,29 @@
 </head>
 <body>
 <%@include file="/WEB-INF/template/header.jsp" %>
+<%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+%>
 <div class="row col-md-12">
     <h1 style="text-align: center;
     color: #212529;">Sign Up for Free</h1>
 </div>
 <div class="container d-flex align-items-center justify-content-center">
+    <c:if test="${not empty  errorMessage}">
+        <div class="toast-container position-absolute top-0 end-0 p-3">
+            <div class="toast show " role="alert" aria-live="assertive" aria-atomic="true" delay="3000"  data-bs-autohide="true">
+                <div class="toast-header">
+                    <img src="assets/pic/rayani-logo.png"  class="rounded me-2 fas" alt="">
+                    <strong class="me-auto text-danger">Error</strong>
+                    <small class="text-muted">just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <p class="text-danger">${errorMessage}</p>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <form id="test" class="" method="post" action="/register">
         <div class="row">
             <div class=" mb-3 col-md-12">
